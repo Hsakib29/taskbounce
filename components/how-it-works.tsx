@@ -1,29 +1,57 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
-import { Button } from "@/components/ui/button"
-import { motion, useInView, useAnimation } from "framer-motion"
+import { useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { motion, useInView, useAnimation } from "framer-motion";
 
 export default function HowItWorks() {
-  const controls = useAnimation()
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, threshold: 0.1 })
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   useEffect(() => {
     if (isInView) {
-      controls.start("visible")
+      controls.start("visible");
     }
-  }, [controls, isInView])
+  }, [controls, isInView]);
 
   const steps = [
-    "Create Your Account",
-    "Define Your Requirements",
-    "Choose Your Assistant",
-    "Set Up Communication",
-    "Start Your First Task",
-    "Review and Feedback",
-    "Scale Your Operations",
-  ]
+    {
+      title: "Schedule a Call",
+      description:
+        "Book a free consultation to discuss your needs and how we can support your business.",
+    },
+    {
+      title: "Define Your Requirements",
+      description:
+        "Tell us exactly what tasks or projects you need help with—big or small.",
+    },
+    {
+      title: "Choose Your Assistant",
+      description:
+        "Browse profiles and select a skilled assistant who fits your needs and work style.",
+    },
+    {
+      title: "Set Up Communication",
+      description:
+        "Connect with your assistant through your preferred channels—chat, email, or video calls.",
+    },
+    {
+      title: "Start Your First Task",
+      description:
+        "Assign your first task and watch it get done efficiently and on time.",
+    },
+    {
+      title: "Review and Feedback",
+      description:
+        "Provide feedback to ensure your assistant is perfectly aligned with your expectations.",
+    },
+    {
+      title: "Scale Your Operations",
+      description:
+        "Easily expand your team and delegate more as your business grows.",
+    },
+  ];
 
   return (
     <section className="py-20 bg-gray-50" ref={ref}>
@@ -35,12 +63,16 @@ export default function HowItWorks() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
-          <p className="text-xl text-gray-600">Get started with TaskBounce in just a few easy steps</p>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            How It Works
+          </h2>
+          <p className="text-xl text-gray-600">
+            Get started with TaskBounce in just a few easy steps
+          </p>
         </motion.div>
         <div className="max-w-4xl mx-auto">
           <div className="space-y-8">
-            {steps.map((step, index) => (
+            {steps.map(({ title, description }, index) => (
               <motion.div
                 key={index}
                 className="flex items-center space-x-6"
@@ -68,10 +100,10 @@ export default function HowItWorks() {
                   {index + 1}
                 </motion.div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{step}</h3>
-                  <p className="text-gray-600">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
-                  </p>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    {title}
+                  </h3>
+                  <p className="text-gray-600">{description}</p>
                 </div>
               </motion.div>
             ))}
@@ -90,5 +122,5 @@ export default function HowItWorks() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
