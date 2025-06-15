@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Play, TrendingUp, Clock, CheckCircle } from "lucide-react";
+import {
+  Play,
+  TrendingUp,
+  Clock,
+  CheckCircle,
+  ExternalLink,
+} from "lucide-react";
 import Image from "next/image";
 import YoutubeModal from "./YoutubeModal"; // Import the YoutubeModal component
 import { useState } from "react"; // Import useState from react
@@ -32,19 +38,24 @@ export default function HeroSection() {
               on what matters most while we handle the rest.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-6">
-              <Button
-                size="lg"
-                className="bg-orange-500 hover:bg-orange-600 text-white"
+              <a
+                href="https://cal.com/hsakib29/15-min-meeting-taskbounce"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block"
               >
-                Get Started Today
-              </Button>
+                <Button
+                  size="lg"
+                  className="bg-orange-500 hover:bg-orange-600 text-white w-full sm:w-auto"
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Get Started Today
+                </Button>
+              </a>
               <Button
                 size="lg"
                 variant="outline"
                 className="border-teal-600 text-teal-600 hover:bg-teal-50"
-                onClick={() => {
-                  setIsModalOpen(true);
-                }}
               >
                 <Play className="w-4 h-4 mr-2" />
                 Watch Demo

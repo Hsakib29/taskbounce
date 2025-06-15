@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Send } from "lucide-react";
+import { ExternalLink, Mail, MapPin, Send } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function ContactSection() {
@@ -90,14 +90,16 @@ export default function ContactSection() {
 
             <div className="mt-8">
               <a
-                href="https://calendly.com/hsakib29/taskbounce-consultation-call"
+                href="https://cal.com/hsakib29/15-min-meeting-taskbounce"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="inline-block"
               >
                 <Button
                   size="lg"
                   className="bg-orange-500 hover:bg-orange-600 w-full sm:w-auto"
                 >
+                  <ExternalLink className="w-4 h-4 mr-2" />
                   Schedule a Call
                 </Button>
               </a>
