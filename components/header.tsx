@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
@@ -18,11 +18,26 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Scroll page to top on logo click
+  const handleLogoClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setIsMenuOpen(false); // close mobile menu if open
+  };
+
+  const handleLogoKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setIsMenuOpen(false);
+    }
+  };
+
   const handleScrollToContact = () => {
     const el = document.getElementById("contact");
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
-      setIsMenuOpen(false); // Close menu on mobile
+      setIsMenuOpen(false);
     }
   };
 
@@ -35,7 +50,15 @@ export default function Header() {
       }`}
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="z-10">
+        {/* Clickable Logo */}
+        <div
+          className="z-10 cursor-pointer"
+          onClick={handleLogoClick}
+          onKeyDown={handleLogoKeyDown}
+          role="button"
+          tabIndex={0}
+          aria-label="Scroll to top"
+        >
           <Image
             src="/taskbounce-logo.webp?height=40&width=120&text=TaskBounce+Logo"
             alt="TaskBounce Logo"
@@ -45,11 +68,11 @@ export default function Header() {
           />
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile menu toggle button */}
         <button
           className="md:hidden z-10"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -74,7 +97,7 @@ export default function Header() {
             Blog
           </a>
 
-          <a href="#contact" className="text-gray-600 hover:text-gray-900">
+          <a href="#contact" className="text-gray-600 hover:text-teal-600">
             Contact
           </a>
           <a
@@ -87,6 +110,7 @@ export default function Header() {
           </a>
         </nav>
 
+        {/* Get Started button (desktop only) */}
         <Button
           onClick={handleScrollToContact}
           className="bg-teal-600 hover:bg-teal-700 hidden md:block z-10"
@@ -101,18 +125,21 @@ export default function Header() {
               <a
                 href="#about"
                 className="text-gray-900 hover:text-teal-600 text-lg"
+                onClick={() => setIsMenuOpen(false)}
               >
                 About Us
               </a>
               <a
                 href="#services"
                 className="text-gray-900 hover:text-teal-600 text-lg"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Services
               </a>
               <a
                 href="#pricing"
                 className="text-gray-900 hover:text-teal-600 text-lg"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Pricing
               </a>
@@ -121,6 +148,7 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-900 hover:text-teal-600 text-lg"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Blog
               </a>
@@ -128,6 +156,7 @@ export default function Header() {
               <a
                 href="#contact"
                 className="text-gray-900 hover:text-teal-600 text-lg"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </a>
@@ -136,6 +165,7 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-orange-500 hover:text-orange-600 font-medium"
+                onClick={() => setIsMenuOpen(false)}
               >
                 BrandBounce
               </a>

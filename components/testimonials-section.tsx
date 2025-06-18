@@ -1,55 +1,68 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function TestimonialsSection() {
-  const [current, setCurrent] = useState(0)
+  const [current, setCurrent] = useState(0);
 
   const testimonials = [
     {
       id: 1,
-      name: "John Doe",
-      role: "CEO, TechCorp",
-      initial: "JD",
+      name: "Emily Carter",
+      role: "Founder & CEO, BrightWave Solutions",
+      initial: "EC",
       bgColor: "bg-teal-100",
       textColor: "text-teal-600",
       content:
-        "TaskBounce has transformed our operations. Their virtual assistants are professional, reliable, and have saved us countless hours.",
+        "Working with TaskBounce has been a game-changer. Their virtual assistants are not just skilled, but genuinely invested in helping our business thrive. It's like having an extended team right by our side.",
     },
     {
       id: 2,
-      name: "Sarah Miller",
-      role: "Founder, StartupXYZ",
-      initial: "SM",
+      name: "David Nguyen",
+      role: "Operations Manager, Horizon Ventures",
+      initial: "DN",
       bgColor: "bg-orange-100",
       textColor: "text-orange-600",
       content:
-        "The quality of work and attention to detail is exceptional. I couldn't imagine running my business without TaskBounce.",
+        "I appreciate their attention to detail and quick turnaround. The TaskBounce team consistently exceeds expectations, freeing up my time to focus on strategic growth.",
     },
     {
       id: 3,
-      name: "Michael Johnson",
-      role: "Marketing Director, GrowthCo",
-      initial: "MJ",
+      name: "Sophia Patel",
+      role: "Marketing Lead, CreativeFlow Agency",
+      initial: "SP",
       bgColor: "bg-blue-100",
       textColor: "text-blue-600",
       content:
-        "TaskBounce's team has been instrumental in scaling our marketing efforts. Their research and data entry services are top-notch.",
+        "TaskBounce has been a crucial partner in our marketing campaigns. Their research and data handling make my job so much easier and the results speak for themselves.",
     },
-  ]
+    {
+      id: 4,
+      name: "Marcus Lee",
+      role: "Small Business Owner",
+      initial: "ML",
+      bgColor: "bg-purple-100",
+      textColor: "text-purple-600",
+      content:
+        "I was hesitant at first, but TaskBounce proved their worth quickly. Their virtual assistant handled my admin tasks flawlessly, giving me back precious hours every week.",
+    },
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % testimonials.length)
-    }, 5000)
+      setCurrent((prev) => (prev + 1) % testimonials.length);
+    }, 6000);
 
-    return () => clearInterval(interval)
-  }, [testimonials.length])
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
 
-  const next = () => setCurrent((prev) => (prev + 1) % testimonials.length)
-  const prev = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  const next = () => setCurrent((prev) => (prev + 1) % testimonials.length);
+  const prev = () =>
+    setCurrent(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
 
   return (
     <section className="py-20 bg-gray-50">
@@ -61,9 +74,12 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            What Our Clients Say
+          </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our clients have to say about working with TaskBounce.
+            Don't just take our word for it. Here's what our clients have to say
+            about working with TaskBounce.
           </p>
         </motion.div>
 
@@ -82,16 +98,24 @@ export default function TestimonialsSection() {
                   <div
                     className={`w-14 h-14 ${testimonials[current].bgColor} rounded-full flex items-center justify-center`}
                   >
-                    <span className={`${testimonials[current].textColor} font-semibold text-lg`}>
+                    <span
+                      className={`${testimonials[current].textColor} font-semibold text-lg`}
+                    >
                       {testimonials[current].initial}
                     </span>
                   </div>
                   <div>
-                    <div className="font-semibold text-xl text-gray-900">{testimonials[current].name}</div>
-                    <div className="text-gray-600">{testimonials[current].role}</div>
+                    <div className="font-semibold text-xl text-gray-900">
+                      {testimonials[current].name}
+                    </div>
+                    <div className="text-gray-600">
+                      {testimonials[current].role}
+                    </div>
                   </div>
                 </div>
-                <p className="text-lg text-gray-700 italic">"{testimonials[current].content}"</p>
+                <p className="text-lg text-gray-700 italic">
+                  "{testimonials[current].content}"
+                </p>
               </motion.div>
             </AnimatePresence>
           </div>
@@ -101,7 +125,9 @@ export default function TestimonialsSection() {
               <button
                 key={index}
                 onClick={() => setCurrent(index)}
-                className={`w-3 h-3 rounded-full ${index === current ? "bg-teal-600" : "bg-gray-300"}`}
+                className={`w-3 h-3 rounded-full ${
+                  index === current ? "bg-teal-600" : "bg-gray-300"
+                }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
@@ -125,5 +151,5 @@ export default function TestimonialsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
