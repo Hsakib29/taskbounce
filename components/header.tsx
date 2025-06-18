@@ -56,24 +56,32 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center justify-center flex-1 space-x-6">
-          <a href="#" className="text-gray-600 hover:text-gray-900">
+          <a href="#about" className="text-gray-600 hover:text-teal-600">
             About Us
           </a>
-          <a href="#" className="text-gray-600 hover:text-gray-900">
+          <a href="#services" className="text-gray-600 hover:text-teal-600">
             Services
           </a>
-          <a href="#" className="text-gray-600 hover:text-gray-900">
+          <a href="#pricing" className="text-gray-600 hover:text-teal-600">
             Pricing
           </a>
-          <a href="#" className="text-gray-600 hover:text-gray-900">
+          <a
+            href="https://blog.brandbounce.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-teal-600"
+          >
             Blog
           </a>
-          <a href="#" className="text-gray-600 hover:text-gray-900">
+
+          <a href="#contact" className="text-gray-600 hover:text-gray-900">
             Contact
           </a>
           <a
-            href="#"
-            className="text-orange-500 hover:text-orange-600 font-medium"
+            href="https://brandbounce.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-orange-500 hover:text-orange-600 text-lg font-medium"
           >
             BrandBounce
           </a>
@@ -90,27 +98,48 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden absolute top-0 left-0 w-full h-screen bg-white pt-20 px-6">
             <nav className="flex flex-col space-y-6">
-              <a href="#" className="text-gray-900 hover:text-teal-600 text-lg">
+              <a
+                href="#about"
+                className="text-gray-900 hover:text-teal-600 text-lg"
+              >
                 About Us
               </a>
-              <a href="#" className="text-gray-900 hover:text-teal-600 text-lg">
+              <a
+                href="#services"
+                className="text-gray-900 hover:text-teal-600 text-lg"
+              >
                 Services
               </a>
-              <a href="#" className="text-gray-900 hover:text-teal-600 text-lg">
+              <a
+                href="#pricing"
+                className="text-gray-900 hover:text-teal-600 text-lg"
+              >
                 Pricing
               </a>
-              <a href="#" className="text-gray-900 hover:text-teal-600 text-lg">
+              <a
+                href="https://blog.brandbounce.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-900 hover:text-teal-600 text-lg"
+              >
                 Blog
               </a>
-              <a href="#" className="text-gray-900 hover:text-teal-600 text-lg">
+
+              <a
+                href="#contact"
+                className="text-gray-900 hover:text-teal-600 text-lg"
+              >
                 Contact
               </a>
               <a
-                href="#"
-                className="text-orange-500 hover:text-orange-600 text-lg font-medium"
+                href="https://brandbounce.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-orange-500 hover:text-orange-600 font-medium"
               >
                 BrandBounce
               </a>
+
               <Button
                 onClick={handleScrollToContact}
                 className="bg-teal-600 hover:bg-teal-700 w-full mt-4"
