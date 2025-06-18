@@ -18,6 +18,14 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleScrollToContact = () => {
+    const el = document.getElementById("contact");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      setIsMenuOpen(false); // Close menu on mobile
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -28,7 +36,6 @@ export default function Header() {
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="z-10">
-          {/* Placeholder for logo image */}
           <Image
             src="/taskbounce-logo.webp?height=40&width=120&text=TaskBounce+Logo"
             alt="TaskBounce Logo"
@@ -72,7 +79,10 @@ export default function Header() {
           </a>
         </nav>
 
-        <Button className="bg-teal-600 hover:bg-teal-700 hidden md:block z-10">
+        <Button
+          onClick={handleScrollToContact}
+          className="bg-teal-600 hover:bg-teal-700 hidden md:block z-10"
+        >
           Get Started
         </Button>
 
@@ -101,7 +111,10 @@ export default function Header() {
               >
                 BrandBounce
               </a>
-              <Button className="bg-teal-600 hover:bg-teal-700 w-full mt-4">
+              <Button
+                onClick={handleScrollToContact}
+                className="bg-teal-600 hover:bg-teal-700 w-full mt-4"
+              >
                 Get Started
               </Button>
             </nav>

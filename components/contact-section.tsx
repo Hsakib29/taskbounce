@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -7,8 +8,10 @@ import { ExternalLink, Mail, MapPin, Send } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function ContactSection() {
+  const [subject, setSubject] = useState("");
+
   return (
-    <section className="py-20 bg-gray-50">
+    <section id="contact" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16"
@@ -81,8 +84,7 @@ export default function ContactSection() {
                     Our global team is ready to boost your productivity.
                   </p>
                   <p className="text-gray-600">
-                    Share your details, and {"we'll"} get in touch within 24
-                    hours.
+                    Share your details, and we'll get in touch within 24 hours.
                   </p>
                 </div>
               </div>
@@ -117,31 +119,92 @@ export default function ContactSection() {
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
               Send Us a Message
             </h3>
-            <form className="space-y-6">
+            <form
+              className="space-y-6"
+              action="https://formspree.io/f/xanovlod"
+              method="POST"
+            >
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <Input placeholder="First Name" className="w-full" />
+                  <Input
+                    name="first_name"
+                    placeholder="First Name"
+                    className="w-full"
+                    required
+                  />
                 </div>
                 <div>
-                  <Input placeholder="Last Name" className="w-full" />
+                  <Input
+                    name="last_name"
+                    placeholder="Last Name"
+                    className="w-full"
+                    required
+                  />
                 </div>
               </div>
+
               <div>
-                <Input placeholder="Email" type="email" className="w-full" />
+                <Input
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  className="w-full"
+                  required
+                />
               </div>
-              <div>
-                <Input placeholder="Subject" className="w-full" />
+
+              {/* Subject Dropdown + Conditional Field */}
+              <div className="space-y-4">
+                <label className="block">
+                  <span className="text-gray-700 font-medium">Subject</span>
+                  <select
+                    name="subject"
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                    required
+                    className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-3 focus:border-teal-500 focus:ring-teal-500"
+                  >
+                    <option value="" disabled>
+                      Select a subject
+                    </option>
+                    <option value="Virtual Assistance">
+                      Virtual Assistance
+                    </option>
+                    <option value="Back-office Support">
+                      Back-office Support
+                    </option>
+                    <option value="Creative Services">Creative Services</option>
+                    <option value="Partnership/Collaboration">
+                      Partnership/Collaboration
+                    </option>
+                    <option value="Other">Other</option>
+                  </select>
+                </label>
+
+                {subject === "Other" && (
+                  <Input
+                    name="custom_subject"
+                    placeholder="Please specify your subject"
+                    required
+                  />
+                )}
               </div>
+
               <div>
                 <Textarea
+                  name="message"
                   placeholder="Your Message"
                   rows={6}
                   className="w-full"
+                  required
+                  minLength={10}
                 />
               </div>
+
               <Button
                 size="lg"
                 className="bg-teal-600 hover:bg-teal-700 w-full"
+                type="submit"
               >
                 Send Message
               </Button>
